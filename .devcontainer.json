@@ -1,0 +1,8 @@
+{
+  "name": "Homelab devcontainer",
+  "image": "mcr.microsoft.com/devcontainers/base:debian",
+  "features": {
+    "ghcr.io/devcontainers-contrib/features/neovim-homebrew:1": {},
+  },
+  "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+}
