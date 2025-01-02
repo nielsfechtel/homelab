@@ -1,6 +1,12 @@
 {
   "name": "Homelab devcontainer",
   "image": "mcr.microsoft.com/devcontainers/base:debian",
+
+  // This might be bad separation of concerns here. See the dotfiles-
+  // devpod's setup.sh-install-script - it also installs a lot of software,
+  // and technically neovim here is not required for this devpod's function,
+  // same as the packages installed via the script, which is where that 
+  // should happen, as other devs might use their own dotfiles ?
   "features": {
     "ghcr.io/devcontainers-contrib/features/neovim-homebrew:1": {},
   },
