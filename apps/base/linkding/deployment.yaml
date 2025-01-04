@@ -26,12 +26,12 @@ spec:
             - name: LD_SUPERUSER_NAME
               valueFrom:
                 secretKeyRef:
-                  name: linkding-config-secret
+                  name: linkding-config
                   key: LD_SUPERUSER_NAME
             - name: LD_SUPERUSER_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: linkding-config-secret
+                  name: linkding-config
                   key: LD_SUPERUSER_PASSWORD
           securityContext:
             allowPrivilegeEscalation: false
