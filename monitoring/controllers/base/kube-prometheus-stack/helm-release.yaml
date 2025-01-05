@@ -31,7 +31,7 @@ spec:
         enabled: true
         ingressClassName: traefik
         hosts:
-          - host: monitoring.niels-fechtel.com
+          - monitoring.niels-fechtel.com
         tls:
           - secretName: grafana-tls-secret
             hosts:
