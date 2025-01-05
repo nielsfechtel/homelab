@@ -10,7 +10,7 @@ spec:
     spec:
       template:
         spec:
-          restartPolicy: never
+          restartPolicy: Never
           containers:
             - name: renovate
               image: renovate/renovate:latest
