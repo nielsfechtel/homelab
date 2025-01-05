@@ -4,7 +4,7 @@ data:
 kind: Secret
 metadata:
     creationTimestamp: null
-    name: renovate-token
+    name: renovate-container-env
 sops:
     kms: []
     gcp_kms: []
