@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - repository.yaml
-  - release.yaml
+  - helm-release.yaml
   - kube-prometheus-values-secret.yaml
