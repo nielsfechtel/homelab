@@ -4,6 +4,5 @@ metadata:
   name: audiobookshelf-configmap
   namespace: audiobookshelf
 data:
-  # Timezone
   TZ: "Europe/Berlin"
   PORT: 3005
