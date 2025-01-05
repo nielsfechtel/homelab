@@ -32,13 +32,6 @@ spec:
         ingressClassName: traefik
         hosts:
           - host: monitoring.niels-fechtel.com
-        path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: prometheus-stack-grafana
-              port:
-                number: 80
   valuesFrom:
     - kind: Secret
       name: kube-prometheus-values
