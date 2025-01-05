@@ -5,3 +5,4 @@ resources:
   - repository.yaml
   - helm-release.yaml
   - kube-prometheus-values-secret.yaml
+  - ingress.yaml
