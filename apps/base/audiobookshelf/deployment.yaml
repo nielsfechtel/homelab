@@ -29,24 +29,24 @@ spec:
             - configMapRef:
                 name: audiobookshelf-configmap
           volumeMounts:
-            - name: audiobookshelf-pvc-audiobooks
+            - name: audiobookshelf-audiobooks
               mountPath: /audiobooks
-            - name: audiobookshelf-pvc-podcasts
+            - name: audiobookshelf-podcasts
               mountPath: /podcasts
-            - name: audiobookshelf-pvc-config
+            - name: audiobookshelf-config
               mountPath: /config
-            - name: audiobookshelf-pvc-metadata
+            - name: audiobookshelf-metadata
               mountPath: /metadata
       volumes:
         - name: audiobookshelf-audiobooks
           persistentVolumeClaim:
-            claimName: audiobookshelf-audiobooks
+            claimName: audiobookshelf-pvc-audiobooks
         - name: audiobookshelf-podcasts
           persistentVolumeClaim:
-            claimName: audiobookshelf-podcasts
+            claimName: audiobookshelf-pvc-podcasts
         - name: audiobookshelf-config
           persistentVolumeClaim:
-            claimName: audiobookshelf-config
+            claimName: audiobookshelf-pvc-config
         - name: audiobookshelf-metadata
           persistentVolumeClaim:
-            claimName: audiobookshelf-metadata
+            claimName: audiobookshelf-pvc-metadata
