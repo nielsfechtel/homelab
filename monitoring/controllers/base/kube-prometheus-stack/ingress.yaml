@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: monitoring
 spec:
-  incressClassName: traefik
+  ingressClassName: traefik
   rules:
     - host: monitoring.niels-fechtel.com
       http:
