@@ -25,6 +25,7 @@ spec:
       - paths: ["/metadata/annotations/prometheus-operator-validated"]
         target:
           kind: PrometheusRule
-  values:
-    grafana:
-      #      adminPassword:
+  valuesFrom:
+    - kind: Secret
+      name: kube-prometheus-values
+

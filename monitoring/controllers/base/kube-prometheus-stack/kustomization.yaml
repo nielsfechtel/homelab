@@ -4,3 +4,4 @@ resources:
   - namespace.yaml
   - repository.yaml
   - release.yaml
+  - kube-prometheus-values-secret.yaml
