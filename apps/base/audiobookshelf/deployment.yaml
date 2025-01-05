@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: audiobookshelf
+  namespace: audiobookshelf
 spec:
   replicas: 1
   selector:
@@ -28,13 +29,13 @@ spec:
             - configMapRef:
               name: audiobookshelf-configmap
           volumeMounts:
-            - name: audiobookshelf-audiobooks
+            - name: audiobookshelf-pvc-audiobooks
               mountPath: /audiobooks
-            - name: audiobookshelf-podcasts
+            - name: audiobookshelf-pvc-podcasts
               mountPath: /podcasts
-            - name: audiobookshelf/config
+            - name: audiobookshelf-pvc-config
               mountPath: /config
-            - name: audiobookshelf/metadata
+            - name: audiobookshelf-pvc-metadata
               mountPath: /metadata
       volumes:
         - name: audiobookshelf-audiobooks
