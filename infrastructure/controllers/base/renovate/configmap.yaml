@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: renovate-configmap
-  metadata: renovate
+  namespace: renovate
 data:
   RENOVATE_AUTODISCOVER: "false"
   RENOVATE_GIT_AUTHOR: "Renovate Bot <bot@renovateapp.com>"

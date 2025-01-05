@@ -19,6 +19,6 @@ spec:
               envFrom:
                 - secretRef:
                     name: renovate-container-env
-                - configMapRef
+                - configMapRef:
                     name: renovate-configmap
 
