@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cloudflared
+  name: cloudflared-linkding
 spec:
   selector:
     matchLabels:
-      app: cloudflared
+      app: cloudflared-linkding
   replicas: 2 # You could also consider elastic scaling for this deployment
   template:
     metadata:
       labels:
-        app: cloudflared
+        app: cloudflared-linkding
     spec:
       containers:
-      - name: cloudflared
+      - name: cloudflared-linkding
         image: cloudflare/cloudflared:latest
         args:
         - tunnel
@@ -46,12 +46,12 @@ spec:
       volumes:
       - name: creds
         secret:
-          secretName: cloudflare-tunnel-credentials
+          secretName: cloudflare-tunnel-credentials-linkding
 
       # Create a config.yaml file from the ConfigMap below.
       - name: config
         configMap:
-          name: cloudflared
+          name: cloudflared-linkding
           items:
           - key: config.yaml
             path: config.yaml
@@ -63,7 +63,7 @@ spec:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cloudflared
+  name: cloudflared-linkding
 data:
   config.yaml: |
     # Name of the tunnel you want to run
