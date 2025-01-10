@@ -31,11 +31,11 @@ spec:
         enabled: true
         ingressClassName: traefik
         hosts:
-          - monitoring.homelab.niels-fechtel.com
+          - monitoring.niels-fechtel.com
         tls:
           - secretName: grafana-tls-secret
             hosts:
-              - monitoring.homelab.niels-fechtel.com
+              - monitoring.niels-fechtel.com
   valuesFrom:
     - kind: Secret
       name: kube-prometheus-values

@@ -76,7 +76,7 @@ data:
     no-autoupdate: true
 
     ingress:
-    - hostname: audiobookshelf.homelab.niels-fechtel.com
+    - hostname: audiobookshelf.niels-fechtel.com
       service: http://audiobookshelf-service:3005
 
     # This rule sends traffic to the built-in hello-world HTTP server. This can help debug connectivity
