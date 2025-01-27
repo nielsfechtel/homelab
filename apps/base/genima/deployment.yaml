@@ -13,7 +13,7 @@ spec:
         app: genima
     spec:
       containers:
-        - name: genima-Web
+        - name: genima-web
           image: ghcr.io/nielsfechtel/genima-web:release-0.0.2
           ports:
             - containerPort: 3000
