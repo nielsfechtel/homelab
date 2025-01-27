@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: GenIma-service
-  namespace: GenIma
+  name: genima-service
+  namespace: genima
 spec:
   ports:
     - port: 9090
   selector:
-    app: GenIma
+    app: genima
   type: ClusterIP

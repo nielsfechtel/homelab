@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: GenIma
+  name: genima
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: GenIma
+      app: genima
   template:
     metadata:
       labels:
-        app: GenIma
+        app: genima
     spec:
       containers:
-        - name: GenIma-Web
+        - name: genima-Web
           image: ghcr.io/nielsfechtel/genima-web:release-0.0.2
           ports:
             - containerPort: 3000
-        - name: GenIma-API
+        - name: genima-api
           image: ghcr.io/nielsfechtel/genima-api:release-0.0.2
           ports:
             - containerPort: 4000

@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: GenIma-data-pvc
-  namespace: GenIma
+  name: genima-data-pvc
+  namespace: genima
 spec:
   accessModes:
     - ReadWriteOnce
