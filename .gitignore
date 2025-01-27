@@ -1,2 +1,7 @@
 .envrc
 kubeconfig
+env.*
+.env
+.env.*
+*.env
+*.env.*
