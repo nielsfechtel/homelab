@@ -3,4 +3,3 @@ kind: Kustomization
 namespace: GenIma
 resources:
   - ../../base/GenIma
-  - cloudflare.yaml
