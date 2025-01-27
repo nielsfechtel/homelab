@@ -14,10 +14,10 @@ spec:
     spec:
       containers:
         - name: genima-web
-          image: ghcr.io/nielsfechtel/genima-web:release-0.0.2
+          image: ghcr.io/nielsfechtel/genima-web:release-0.0.3
           ports:
             - containerPort: 3000
         - name: genima-api
-          image: ghcr.io/nielsfechtel/genima-api:release-0.0.2
+          image: ghcr.io/nielsfechtel/genima-api:release-0.0.3
           ports:
             - containerPort: 4000
