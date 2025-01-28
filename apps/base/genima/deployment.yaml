@@ -21,3 +21,6 @@ spec:
           image: ghcr.io/nielsfechtel/genima-api:release-0.0.3
           ports:
             - containerPort: 4000
+          envFrom:
+            - secretRef
+                name: web-env
