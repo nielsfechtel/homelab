@@ -22,5 +22,5 @@ spec:
           ports:
             - containerPort: 4000
           envFrom:
-            - secretRef
+            - secretRef:
                 name: web-env
