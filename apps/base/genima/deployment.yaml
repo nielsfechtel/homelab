@@ -17,9 +17,6 @@ spec:
           image: ghcr.io/nielsfechtel/genima-web:release-0.0.3
           ports:
             - containerPort: 3000
-          env:
-            - name: TEST_ENV_VAR
-              value: testenvvar123
           envFrom:
             - secretRef:
                 name: web-env
