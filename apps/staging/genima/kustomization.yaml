@@ -5,3 +5,5 @@ resources:
   - ../../base/genima
   - api-env-secret.yaml
   - web-env-secret.yaml
+  - cloudflare.yaml
+  - cloudflare-tunnel-secret.yaml
