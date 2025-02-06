@@ -14,14 +14,14 @@ spec:
     spec:
       containers:
         - name: web
-          image: ghcr.io/nielsfechtel/genima-web:release-0.0.3
+          image: ghcr.io/nielsfechtel/genima-web:release-0.0.4
           ports:
             - containerPort: 3000
           envFrom:
             - secretRef:
                 name: web-env
         - name: api
-          image: ghcr.io/nielsfechtel/genima-api:release-0.0.3
+          image: ghcr.io/nielsfechtel/genima-api:release-0.0.4
           ports:
             - containerPort: 4000
           envFrom:
