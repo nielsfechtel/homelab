@@ -15,6 +15,7 @@ spec:
       containers:
         - name: web
           image: ghcr.io/nielsfechtel/genima-web:release-0.0.4
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
           envFrom:
@@ -22,6 +23,7 @@ spec:
                 name: web-env
         - name: api
           image: ghcr.io/nielsfechtel/genima-api:release-0.0.4
+          imagePullPolicy: Always
           ports:
             - containerPort: 4000
           envFrom:
