@@ -25,7 +25,7 @@ Currently running on one old laptop.
 
 ## Todo
 - [ ] Add backup-procedures
-- [ ] Further understand and configure Prometheus, Grafana, etc.
+- [X] Further understand and configure Prometheus, Grafana, etc.
 
 ## Credits
 - created with and inspired by [Mischa van den Burg's homelab-repo and -course](https://github.com/mischavandenburg/homelab)
