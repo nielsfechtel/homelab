@@ -1,3 +1,4 @@
+# Homelab                              
 ```
   _    _                      _       _     
  | |  | |                    | |     | |    
@@ -6,7 +7,6 @@
  | |  | | (_) | | | | | |  __/ | (_| | |_) |
  |_|  |_|\___/|_| |_| |_|\___|_|\__,_|_.__/ 
 ```                                         
-# Homelab                              
 My basic homelab-setup. 
 Utilizes Kubernetes on [k3s](https://github.com/k3s-io/k3s) with a [Flux](https://fluxcd.io/)-GitOps-flow on an old laptop.
 
