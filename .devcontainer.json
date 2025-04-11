@@ -13,5 +13,8 @@
     "ghcr.io/rio/features/k9s:1": {},
     "ghcr.io/jsburckhardt/devcontainer-features/flux:1": {}
   },
-  "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+  "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+  "mounts": [
+    "source=${localEnv:HOME}/.age,target=/home/vscode/.age,type=bind,readonly"
+  ]
 }
