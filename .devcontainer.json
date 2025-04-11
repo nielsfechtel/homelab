@@ -2,7 +2,16 @@
   "name": "Homelab devcontainer",
   "image": "mcr.microsoft.com/devcontainers/base:debian",
   "features": {
-    "ghcr.io/devcontainers-contrib/features/neovim-homebrew:1": {}
+    "ghcr.io/devcontainers-contrib/features/neovim-homebrew:1": {},
+    "ghcr.io/devcontainers/features/terraform:1": {},
+    "ghcr.io/devcontainers-extra/features/talosctl:1": {},
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
+    "ghcr.io/christophermacgown/devcontainer-features/direnv:1": {},
+    "ghcr.io/mpriscella/features/sops:1": {},
+    "ghcr.io/devcontainers-extra/features/age:1": {},
+    "ghcr.io/devcontainers-extra/features/kubectx-kubens:1": {},
+    "ghcr.io/rio/features/k9s:1": {},
+    "ghcr.io/jsburckhardt/devcontainer-features/flux:1": {}
   },
   "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
 }
