@@ -12,7 +12,8 @@
     "ghcr.io/devcontainers-extra/features/kubectx-kubens:1": {},
     "ghcr.io/rio/features/k9s:1": {},
     "ghcr.io/jsburckhardt/devcontainer-features/flux:1": {},
-    "ghcr.io/eitsupi/devcontainer-features/jq-likes:2": {}
+    "ghcr.io/eitsupi/devcontainer-features/jq-likes:2": {},
+    "ghcr.io/jpawlowski/devcontainer-features/cascadia-code:1": {}
   },
   "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
   "mounts": [

@@ -2,3 +2,6 @@ creation_rules:
   - path_regex: .*\.(yaml|yml|json|tf|tfvars)$
     encrypted_regex: ^(data|stringData|password|token|key|secret|content)$
     age: age1wgsnca8gljfz2659cs8rmme7aanwznkdakck32qmeks7sslec50svgdjwv
+  - path_regex: config/cluster_config\.yaml$
+    encrypted_regex: ^(ips|node|cores|memory|disk_size|gateway|subnet|dns)$
+    age: age1wgsnca8gljfz2659cs8rmme7aanwznkdakck32qmeks7sslec50svgdjwv
