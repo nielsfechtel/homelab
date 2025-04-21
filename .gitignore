@@ -21,8 +21,6 @@ talos/iso/*.iso
 **/.kube/config
 *kubeconfig*
 
-**/homelab-connect.sh
-
 # Terraform-specific ignores, thanks https://github.com/github/gitignore/blob/main/Terraform.gitignore
 # Local .terraform directories
 **/.terraform/*
