@@ -13,6 +13,21 @@ locals {
   # Ensure profiles are correctly processed as a list of objects
   control_plane_profiles = local.cluster_config.controlPlanes.profiles
   worker_profiles = local.cluster_config.workers.profiles
+
+  # MAC address base
+  base_mac = "DE:AD:BE:EF"
+
+  # Generate control plane MACs
+  control_plane_macs = [
+    for idx in range(local.control_plane_count) :
+    format("${local.base_mac}:%02X:%02X", 0, idx)
+  ]
+
+  # Generate worker MACs
+  worker_macs = [
+    for idx in range(local.worker_count) :
+    format("${local.base_mac}:%02X:%02X", 1, idx)
+  ]
 }
 
 resource "proxmox_vm_qemu" "talos_control_plane" {
