@@ -17,8 +17,9 @@
     },
     "ghcr.io/jpawlowski/devcontainer-features/cascadia-code:1": {}
   },
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y iputils-ping netcat-openbsd",
   "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
   "mounts": [
-    "source=${localEnv:HOME}/.age,target=/home/vscode/.age,type=bind,readonly"
+    "source=${localEnv:HOME}/.age,target=/home/vscode/.config/sops/age,type=bind,readonly"
   ]
 }
