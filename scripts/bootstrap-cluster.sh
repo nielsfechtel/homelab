@@ -49,18 +49,15 @@ echo -e "\nKubernetes API server is available!"
 # Get kubeconfig
 echo "Retrieving kubeconfig..."
 talosctl --talosconfig $TALOSCONFIG kubeconfig --nodes $CONTROL_PLANE_1 "${KUBECONFIG}"
+export KUBECONFIG="${KUBECONFIG}"
 
-# Install and configure Flux (if applicable)
-if [[ -n "${GIT_REPO_OWNER:-}" && -n "${GIT_REPO_REPOSITORY:-}" ]]; then
-  echo "Installing Flux..."
-  export KUBECONFIG="${KUBECONFIG}"
-  flux bootstrap github \
-    --personal \
-    --token-auth \
-    --owner="${GIT_REPO_OWNER}" \
-    --repository="${GIT_REPO_REPOSITORY}" \
-    --path=kubernetes/clusters/${ENVIRONMENT} 
-fi
+echo "Installing Flux..."
+flux bootstrap github \
+  --personal \
+  --token-auth \
+  --owner="${GIT_REPO_OWNER}" \
+  --repository="${GIT_REPO_REPOSITORY}" \
+  --path=kubernetes/clusters/${ENVIRONMENT}
 
 echo "Cluster setup complete!"
 echo "You can now use kubectl with: export KUBECONFIG=${KUBECONFIG}"
