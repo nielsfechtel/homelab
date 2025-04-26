@@ -47,8 +47,9 @@ resource "proxmox_vm_qemu" "talos_control_plane" {
           iso = var.install_iso
         }
       }
-      scsi1 {
-        # Storage configuration
+    }
+    virtio {
+      virtio0 {
         disk {
           size = local.control_plane_profiles[count.index].disk_size
           storage = local.cluster_config.storage.vmDiskStorage
@@ -70,7 +71,7 @@ resource "proxmox_vm_qemu" "talos_control_plane" {
   os_type = "linux"
 
   # Set boot-order - first the scsi-disk 0, then net0 (PXE boot)
-  boot = "order=scsi0;net0"
+  boot = "order=virtio0;scsi0"
 
   # Resource allocation based on the profile
   cores = local.control_plane_profiles[count.index].cores
@@ -102,8 +103,9 @@ resource "proxmox_vm_qemu" "talos_worker" {
           iso = var.install_iso
         }
       }
-      scsi1 {
-        # Storage configuration
+    }
+    virtio {
+      virtio0 {
         disk {
           size = local.worker_profiles[count.index].disk_size
           storage = local.cluster_config.storage.vmDiskStorage
@@ -125,7 +127,7 @@ resource "proxmox_vm_qemu" "talos_worker" {
   os_type = "linux"
 
   # Set boot-order - first the scsi-disk 0, then net0 (PXE boot)
-  boot = "order=scsi0;net0"
+  boot = "order=virtio0;scsi0"
 
   # Resource allocation based on the profile
   cores = local.worker_profiles[count.index].cores
