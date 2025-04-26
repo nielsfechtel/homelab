@@ -24,7 +24,6 @@ for i in "${!CONTROLPLANE_IPS[@]}"; do
 
   echo -e "\nApplying configuration to control plane $((i + 1)) (${NODE_IP})..."
   
-  # Apply the configuration without patch
   talosctl apply-config \
     --insecure \
     --nodes ${NODE_IP} \
@@ -44,7 +43,6 @@ for i in "${!WORKER_IPS[@]}"; do
 
   echo -e "\nApplying configuration to worker $((i + 1)) (${NODE_IP})..."
   
-  # Apply the configuration without patch
   talosctl apply-config \
     --insecure \
     --nodes ${NODE_IP} \
