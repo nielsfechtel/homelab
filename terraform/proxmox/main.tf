@@ -83,6 +83,7 @@ resource "proxmox_vm_qemu" "talos_control_plane" {
     id = 0
     model = "virtio"
     bridge = "vmbr0"
+    macaddr = local.control_plane_macs[count.index]
   }
 }
 
@@ -139,23 +140,6 @@ resource "proxmox_vm_qemu" "talos_worker" {
     id = 0
     model = "virtio"
     bridge = "vmbr0"
-  }
-}
-
-# After the VMs have been created, execute the apply-configs and bootstrap scripts
-resource "null_resource" "bootstrap_talos" {
-  depends_on = [
-    proxmox_vm_qemu.talos_control_plane,
-    proxmox_vm_qemu.talos_worker
-  ]
-  
-  # The provisioner will run the required scripts in sequence
-  provisioner "local-exec" {
-    command = <<-EOT
-      echo "Waiting 60 seconds for VMs to boot completely..."
-      sleep 60
-      ${path.root}/../../scripts/apply-talos-configs.sh && ${path.root}/../../scripts/bootstrap-cluster.sh
-    EOT
-    working_dir = path.root
+    macaddr = local.worker_macs[count.index]
   }
 }
