@@ -1,0 +1,10 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# Have Linguist, which Github uses to scan a repository for languages used,
+ # see YAML as a non-documentation language
+ # Note: this is a Github- and decorative change only. Doesn't affect functionality in any way.
+ *.yml linguist-detectable=true
+ *.yml linguist-language=YAML
+ *.yaml linguist-detectable=true
+ *.yaml linguist-language=YAML
