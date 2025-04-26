@@ -13,8 +13,6 @@ env.*
 talos/configs/*
 !talos/configs/.gitkeep
 *talosconfig*
-# Generated Talos ISOs
-talos/iso/*.iso
 
 # Kubernetes configs
 **/kubeconfig
