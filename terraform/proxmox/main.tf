@@ -64,9 +64,6 @@ resource "proxmox_vm_qemu" "talos_control_plane" {
   # auto-boot
   onboot = true
 
-  # Allow reclaiming of some memory if unused
-  balloon = 512
-
   # Set OS type to allow Proxmox to optimize
   os_type = "linux"
 
@@ -120,9 +117,6 @@ resource "proxmox_vm_qemu" "talos_worker" {
 
   # auto-boot
   onboot = true
-
-  # Allow reclaiming of some memory if unused
-  balloon = 512
 
   # Set OS type to allow Proxmox to optimize
   os_type = "linux"
