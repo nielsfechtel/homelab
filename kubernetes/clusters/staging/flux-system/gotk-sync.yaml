@@ -11,7 +11,7 @@ spec:
     branch: main
   secretRef:
     name: flux-system
-  url: ssh://git@github.com/nielsfechtel/homelab
+  url: https://github.com/nielsfechtel/homelab.git
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./clusters/staging
+  path: ./kubernetes/clusters/staging
   prune: true
   sourceRef:
     kind: GitRepository
