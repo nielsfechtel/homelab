@@ -25,7 +25,7 @@ jobs:
         id: update
         run: |
           flux install \
-            --export > ./clusters/staging/flux-system/gotk-components.yaml
+            --export > ./kubernetes/clusters/staging/flux-system/gotk-components.yaml
 
           VERSION="$(flux -v)"
           echo "flux_version=$VERSION" >> $GITHUB_OUTPUT          
