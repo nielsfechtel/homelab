@@ -2,7 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "kubernetes": {
     "fileMatch": [
-      "\\.yaml$"
+      "kubernetes/.+\\.ya?ml$"
     ]
   }
 }
