@@ -39,7 +39,7 @@ The devcontainer needs to be used, ensuring all required cli-tools are available
 
 The `scripts/utils.sh`-script is used to decrypt and extract values required from the config.
 
-Steps to deploy:
+### Steps to deploy:
 - Check/update `config/cluster_config.yaml` - contains specific network and VM configuration
     - To decrypt, make sure the private age-key is in the location defined in the devcontainer-mount, so sops can automatically pick it up, then `sops <file>` to open file in defined editor or `sops --decrypt --in-place <file>` (remember to encrypt again)
     - Add metal-Talos OS-iso to Proxmox storage (defined in config)
@@ -50,6 +50,9 @@ Steps to deploy:
 - For Flux bootstrapping: have a GitHub Fine-grained access token with the permissions Read in Administration and Metadata, as well as Read and Write in Code and Secrets, ready to paste (alternatively add value in GITHUB_TOKEN-env-var)
 - Use `scripts/bootstrap-cluster.sh` to bootstrap the first control plane, then setup Flux
 - Add private age-key as a secret in the cluster: `kubectl create secret generic --namespace flux-system sops-age --from-literal=age.agekey=<VALUE>`
+
+### Steps to tear down:
+- Go into `terraform/proxmox` and use `terraform destroy` to delete the VMs
 
 ## Security
 This repository uses [SOPS](https://github.com/mozilla/sops) with [Age](https://github.com/FiloSottile/age) for encrypting sensitive configuration values while allowing them to be checked into git. Right now, the age-key needs to be added manually again if the whole kubernetes-cluster goes down.
