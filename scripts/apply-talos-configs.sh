@@ -11,8 +11,6 @@ load_cluster_config
 
 CONFIGS_DIR="${REPO_ROOT}/talos/configs"
 
-echo "Using Talos version: ${TALOS_VERSION}"
-
 # Apply configurations to control planes
 for i in "${!CONTROLPLANE_IPS[@]}"; do
   NODE_IP="${CONTROLPLANE_IPS[$i]}"

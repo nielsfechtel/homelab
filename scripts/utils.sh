@@ -21,7 +21,6 @@ load_cluster_config() {
   
   # Parse configuration from content
   export CLUSTER_NAME=$(echo "$config_content" | yq -r '.clusterName')
-  export TALOS_VERSION=$(echo "$config_content" | yq -r '.talosVersion')
   export ENVIRONMENT=$(echo "$config_content" | yq -r '.environment')
   export CONTROL_PLANE_COUNT=$(echo "$config_content" | yq -r '.controlPlanes.count')
   export WORKER_COUNT=$(echo "$config_content" | yq -r '.workers.count')
