@@ -20,6 +20,7 @@ Current applications running in the homelab:
 
 ## Roadmap/Todo
 - [ ] Add highly available storage so the services relying on it can actually start (looking at Longhorn)
+- [ ] Upgrade to [Talos 1.10](https://github.com/siderolabs/talos/releases/tag/v1.10.0)
 - [ ] Add monitoring and alerts for cluster, applications and in Proxmox for the VMs
 - [ ] Implement proper backup solution for cluster state and application data - via Longhorn
 - [ ] Add CI/CD pipeline for infrastructure validation
