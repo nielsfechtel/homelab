@@ -11,45 +11,21 @@ REPO_ROOT="$(get_repo_root)"
 # Load configuration
 load_cluster_config
 
-# Set paths
-TALOSCONFIG="${REPO_ROOT}/talos/configs/talosconfig"
-KUBECONFIG="${REPO_ROOT}/talos/configs/kubeconfig"
-
 # First control plane is the bootstrap node
 CONTROL_PLANE_1="${CONTROLPLANE_IPS[0]}"
 
+echo -n "Waiting for machine to be reachable on port 50000 (reboot complete)"
+timeout 300 bash -c "until nc -z ${CONTROL_PLANE_1} 50000; do echo -n '.'; sleep 5; done"
+sleep 5
+echo -e "\nTalos API is reachable on ${CONTROL_PLANE_1}"
+
 echo "Bootstrapping the first control plane-node"
-talosctl --talosconfig $TALOSCONFIG bootstrap --nodes $CONTROL_PLANE_1 --endpoints $CONTROL_PLANE_1 
+talosctl bootstrap --nodes $CONTROL_PLANE_1 --endpoints $CONTROL_PLANE_1 
+echo "Sleeping 1 minute, giving node time to configure"
+sleep 30
 
-echo "Checking that all nodes are ready"
-
-for ip in "${CONTROLPLANE_IPS[@]}"; do
-  echo "Waiting for control plane ${ip} to be ready..."
-  timeout 600 bash -c "until talosctl --talosconfig $TALOSCONFIG health --nodes ${ip} --endpoints ${CONTROLPLANE_IPS[0]} | grep -q 'ready'; do echo -n '.'; sleep 10; done"
-  echo "Control plane ${ip} is ready"
-done
-
-for ip in "${WORKER_IPS[@]}"; do
-  echo "Waiting for worker ${ip} to be ready..."
-  timeout 600 bash -c "until talosctl --talosconfig $TALOSCONFIG health --nodes ${ip} --endpoints ${CONTROLPLANE_IPS[0]} | grep -q 'ready'; do echo -n '.'; sleep 10; done"
-  echo "Worker ${ip} is ready"
-done
-
-echo "All nodes are ready"
-
-echo "Using Talos version: ${TALOS_VERSION}"
-echo "Bootstrapping control plane at ${CONTROL_PLANE_1}..."
-
-
-
-echo "Waiting for the Kubernetes API server to be available..."
-timeout 300 bash -c "until talosctl --talosconfig $TALOSCONFIG health --nodes $CONTROL_PLANE_1 | grep -q 'ready' || talosctl --talosconfig $TALOSCONFIG service kube-apiserver --nodes $CONTROL_PLANE_1 | grep -q 'Running'; do echo -n '.'; sleep 10; done"
-echo -e "\nKubernetes API server is available!"
-
-# Get kubeconfig
 echo "Retrieving kubeconfig..."
-talosctl --talosconfig $TALOSCONFIG kubeconfig --nodes $CONTROL_PLANE_1 "${KUBECONFIG}"
-export KUBECONFIG="${KUBECONFIG}"
+talosctl kubeconfig --nodes $CONTROL_PLANE_1 "${REPO_ROOT}/talos/configs/kubeconfig"
 
 echo "Installing Flux..."
 flux bootstrap github \
@@ -60,4 +36,3 @@ flux bootstrap github \
   --path=kubernetes/clusters/${ENVIRONMENT}
 
 echo "Cluster setup complete!"
-echo "You can now use kubectl with: export KUBECONFIG=${KUBECONFIG}"
