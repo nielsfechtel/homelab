@@ -25,3 +25,5 @@ talosctl config nodes $(IFS=" "; echo "${WORKER_IPS[*]}")
 
 #echo "Configuration files created"
 #echo "Run 'terraform apply' to create VMs, then 'apply-talos-configs.sh' to configure them"
+echo "Configuration files created"
+echo "Run 'terraform apply' to create VMs, then 'apply-talos-configs.sh' to configure them"
