@@ -9,9 +9,6 @@ source "${SCRIPT_DIR}/utils.sh"
 REPO_ROOT="$(get_repo_root)"
 load_cluster_config
 
-# API endpoint is the IP of the first control plane node
-ENDPOINT="${CONTROLPLANE_IPS[0]}"
-
 echo "Generating Talos configurations for ${CLUSTER_NAME} with Talos ${TALOS_VERSION}..."
 echo "API endpoint: https://${ENDPOINT}:6443"
 
@@ -22,5 +19,9 @@ talosctl gen config "$CLUSTER_NAME" "https://${ENDPOINT}:6443" \
   --output-dir "${REPO_ROOT}/talos/configs" \
   --config-patch '[{"op": "replace", "path": "/machine/install/disk", "value": "/dev/vda"}]' 
 
-echo "Configuration files created"
-echo "Run 'terraform apply' to create VMs, then 'apply-talos-configs.sh' to configure them"
+# Adjust local talosconfig to include endpoint- and node-IPs (array to whitespace-separated list)
+talosctl config endpoints $(IFS=" "; echo "${CONTROLPLANE_IPS[*]}")
+talosctl config nodes $(IFS=" "; echo "${WORKER_IPS[*]}")
+
+#echo "Configuration files created"
+#echo "Run 'terraform apply' to create VMs, then 'apply-talos-configs.sh' to configure them"
