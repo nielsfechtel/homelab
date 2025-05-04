@@ -9,6 +9,7 @@ locals {
   control_plane_count = local.cluster_config.controlPlanes.count
   worker_count = local.cluster_config.workers.count
   talos_version = local.cluster_config.talosVersion
+  install_iso_path = local.cluster_config.installIsoPath
 
   # Ensure profiles are correctly processed as a list of objects
   control_plane_profiles = local.cluster_config.controlPlanes.profiles
@@ -44,7 +45,7 @@ resource "proxmox_vm_qemu" "talos_control_plane" {
     scsi {
       scsi0 {
         cdrom {
-          iso = var.install_iso
+          iso = local.install_iso_path
         }
       }
     }
@@ -98,7 +99,7 @@ resource "proxmox_vm_qemu" "talos_worker" {
     scsi {
       scsi0 {
         cdrom {
-          iso = var.install_iso
+          iso = local.install_iso_path
         }
       }
     }
