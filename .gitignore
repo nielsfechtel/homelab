@@ -9,10 +9,12 @@ env.*
 *.key
 *.crt
 
-# Talos configuration files
+# Talos files
+*talosconfig*
 talos/configs/*
 !talos/configs/.gitkeep
-*talosconfig*
+talos/iso/*
+!talos/iso/.gitkeep
 
 # Kubernetes configs
 **/kubeconfig
