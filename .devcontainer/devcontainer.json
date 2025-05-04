@@ -15,7 +15,9 @@
     "ghcr.io/eitsupi/devcontainer-features/jq-likes:2": {
       "yqVersion": "latest"
     },
-    "ghcr.io/jpawlowski/devcontainer-features/cascadia-code:1": {}
+    "ghcr.io/jpawlowski/devcontainer-features/cascadia-code:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/jsburckhardt/devcontainer-features/crane:1": {}
   },
   "postCreateCommand": "sudo apt-get update && sudo apt-get install -y iputils-ping netcat-openbsd",
   "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
