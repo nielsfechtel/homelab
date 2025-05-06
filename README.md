@@ -19,12 +19,11 @@ Current applications running in the homelab:
 - Automatic updates via [Renovate](https://github.com/renovatebot/renovate) and GitHub Actions
 
 ## Roadmap/Todo
-- [ ] Add highly available storage so the services relying on it can actually start (looking at Longhorn)
-- [ ] Upgrade to [Talos 1.10](https://github.com/siderolabs/talos/releases/tag/v1.10.0)
+- [ ] Make sure Renovate also covers the rest (Terraform providers, ..?)
 - [ ] Add monitoring and alerts for cluster, applications and in Proxmox for the VMs
 - [ ] Implement proper backup solution for cluster state and application data - via Longhorn
-- [ ] Add CI/CD pipeline for infrastructure validation
 - [ ] Implement (=> document) disaster recovery procedures
+- [ ] Add CI/CD pipeline for infrastructure validation
 
 ## Hardware Configuration
 The cluster runs on a mix of old repurposed hardware with essentially minimum values, because the machines are rather old:
@@ -43,8 +42,10 @@ The `scripts/utils.sh`-script is used to decrypt and extract values required fro
 ### Steps to deploy:
 - Check/update `config/cluster_config.yaml` - contains specific network and VM configuration
     - To decrypt, make sure the private age-key is in the location defined in the devcontainer-mount, so sops can automatically pick it up, then `sops <file>` to open file in defined editor or `sops --decrypt --in-place <file>` (remember to encrypt again)
-    - Add metal-Talos OS-iso to Proxmox storage (defined in config)
     - Add static DHCP-addresses in router-interface for the MAC-addresses defined in the config
+- Go to [Talos Image Factory](https://factory.talos.dev/) and configure an image - extensions needed are in `./config/talos-bare-metal.yaml`
+    - Upload ISO via Download from URL in the Proxmox-UI in the NFS
+    - Copy the installer-image-url for the create-talos-configs-script
 - Use `scripts/create-talos-configs.sh` to create talos-related files
 - Go into `terraform/proxmox` and use `terraform init` and `terraform plan` to init & check changes, then `terraform apply` to create the VMs
 - Use `scripts/apply-talos-configs.sh` to apply the configs to the machines
@@ -54,6 +55,7 @@ The `scripts/utils.sh`-script is used to decrypt and extract values required fro
 
 ### Steps to tear down:
 - Go into `terraform/proxmox` and use `terraform destroy` to delete the VMs
+- Delete generated config-files from `./talos/config`
 
 ## Security
 This repository uses [SOPS](https://github.com/mozilla/sops) with [Age](https://github.com/FiloSottile/age) for encrypting sensitive configuration values while allowing them to be checked into git. Right now, the age-key needs to be added manually again if the whole kubernetes-cluster goes down.
