@@ -13,15 +13,17 @@ echo "Generating Talos configurations for ${CLUSTER_NAME}..."
 echo "API endpoint: https://${ENDPOINT}:6443"
 
 # Generate the Talos config files for control plane and worker nodes
-# Patch to use /dev/vda instead of default /dev/sda, see
-# https://www.talos.dev/v1.9/talos-guides/configuration/patching/#configuration-patching-with-talosctl-cli
-patch_disk='{"op": "replace", "path": "/machine/install/disk", "value": "/dev/vda"}'
 # As specified in https://longhorn.io/docs/1.8.1/advanced-resources/os-distro-specific/talos-linux-support/#data-path-mounts
 patch_longhorn='{"op": "replace", "path": "/machine/kubelet/extraMounts", "value": [ { "destination": "/var/lib/longhorn", "type": "bind", "source": "/var/lib/longhorn", "options": [ "bind", "rshared", "rw" ] } ] }'
+# get install-image-URL from user
+read -p "Paste install-image-url:" install_image_url
 
-talosctl gen config "$CLUSTER_NAME" "https://${ENDPOINT}:6443" \
+# Disk needs to be vda as it's a VM
+talosctl gen config "$CLUSTER_NAME-${ENVIRONMENT}" "https://${ENDPOINT}:6443" \
   --output-dir "${REPO_ROOT}/talos/configs" \
-  --config-patch "[${patch_disk}, ${patch_longhorn}]"
+  --install-disk "/dev/vda" \
+  --config-patch "[${patch_longhorn}]" \
+  --install-image="${install_image_url}"
 
 # Adjust local talosconfig to include endpoint- and node-IPs (array to whitespace-separated list)
 talosctl config endpoints $(IFS=" "; echo "${CONTROLPLANE_IPS[*]}")

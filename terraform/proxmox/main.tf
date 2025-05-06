@@ -8,7 +8,6 @@ locals {
   # Extract values from configuration
   control_plane_count = local.cluster_config.controlPlanes.count
   worker_count = local.cluster_config.workers.count
-  talos_version = local.cluster_config.talosVersion
   install_iso_path = local.cluster_config.installIsoPath
 
   # Ensure profiles are correctly processed as a list of objects

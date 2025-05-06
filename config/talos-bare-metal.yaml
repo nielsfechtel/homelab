@@ -1,0 +1,8 @@
+# Extensions as required by Longhorn
+# Add them in https://factory.talos.dev/, then download the iso
+# from URL in Proxmox and copy the installer-image-url for the create-talos-configs-script
+customization:
+  systemExtensions:
+    officialExtensions:
+      - siderolabs/util-linux-tools
+      - siderolabs/iscsi-tools
